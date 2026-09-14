@@ -1,0 +1,1140 @@
+/**
+ * Tsedeke Grand Hotel — Light Theme
+ * A strict three-color system for maximum accessibility, contrast, and elegance:
+ *   1. White/Cream (#FFFFFF / #FAF6EB) for backgrounds, panels, and input fields.
+ *   2. Pure Black (#000000) for all text, titles, links, labels, and forms.
+ *   3. Golden (#C9A84C / #E8C97A) for highlights, active links, lines, borders, and buttons.
+ *
+ * This completely eliminates low-contrast charcoals, translucent shadows, and blurry overlays.
+ */
+
+/* ─────────────────────────────────────────────────────────────
+   1. VARIABLE OVERRIDES
+───────────────────────────────────────────────────────────── */
+body.theme-light {
+  /* Surfaces — White & Cream only */
+  --black: #FFFFFF;
+  /* Pure white canvas */
+  --dark: #FAF6EB;
+  /* Clean warm cream */
+  --dark-2: #FFFFFF;
+  /* Pure white card base */
+  --dark-3: #FAF6EB;
+  /* Clean warm cream secondary panels */
+  --dark-4: #FFFFFF;
+  /* Accent white background */
+
+  /* Text — Pure Crisp Black (no opacities) */
+  --white: #000000;
+  --white-dim: #000000;
+  --white-faint: #000000;
+  --text-dim: #000000;
+
+  /* Gold — identity stays intact */
+  --gold: #C9A84C;
+  --gold-light: #E8C97A;
+  --gold-dark: #C9A84C;
+
+  /* Borders — Solid Gold lines */
+  --color-border-gold: #C9A84C;
+  --color-border-bright: #C9A84C;
+
+  /* Tailwind CSS v4 variables mapping */
+  --color-black: var(--black);
+  --color-dark: var(--dark);
+  --color-dark-2: var(--dark-2);
+  --color-dark-3: var(--dark-3);
+  --color-dark-4: var(--dark-4);
+  --color-white: var(--white);
+  --color-white-dim: var(--white-dim);
+  --color-white-faint: var(--white-faint);
+
+  /* Gradients & Overlays - Transparent as requested (no gradient overlays) */
+  --hero-gradient: linear-gradient(transparent, transparent);
+  --hero-gradient-vertical: linear-gradient(transparent, transparent);
+  --hero-overlay-dark: linear-gradient(transparent, transparent);
+  --hero-gradient-responsive: linear-gradient(transparent, transparent);
+
+  /* Page background & base text */
+  background: var(--black);
+  color: var(--white);
+}
+
+/* ─────────────────────────────────────────────────────────────
+   2. BODY & SELECTION
+───────────────────────────────────────────────────────────── */
+body.theme-light ::selection {
+  background: var(--gold);
+  color: #000000;
+}
+
+body.theme-light ::-moz-selection {
+  background: var(--gold);
+  color: #000000;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   3. SCROLLBAR
+───────────────────────────────────────────────────────────── */
+body.theme-light ::-webkit-scrollbar {
+  width: 6px;
+}
+
+body.theme-light ::-webkit-scrollbar-track {
+  background: var(--dark);
+}
+
+body.theme-light ::-webkit-scrollbar-thumb {
+  background: var(--gold);
+  border-radius: 3px;
+}
+
+body.theme-light ::-webkit-scrollbar-thumb:hover {
+  background: var(--gold-light);
+}
+
+/* ─────────────────────────────────────────────────────────────
+   4. NAVBAR
+───────────────────────────────────────────────────────────── */
+body.theme-light nav {
+  background: #FFFFFF !important;
+  border-bottom: none !important;
+  box-shadow: none !important;
+}
+
+body.theme-light .nav-logo,
+body.theme-light .nav-logo span {
+  color: var(--gold) !important;
+}
+
+body.theme-light nav a,
+body.theme-light nav ul li a,
+body.theme-light .nav-links a {
+  color: #000000 !important;
+}
+
+body.theme-light nav a:hover,
+body.theme-light nav ul li a:hover,
+body.theme-light .nav-links a:hover,
+body.theme-light nav a.active,
+body.theme-light nav ul li a.active,
+body.theme-light .nav-links a.active {
+  color: var(--gold) !important;
+}
+
+body.theme-light .nav-links a::after,
+body.theme-light nav ul li a::after {
+  background: var(--gold) !important;
+}
+
+body.theme-light .nav-book {
+  background: var(--gold) !important;
+  color: #000000 !important;
+  border: 2px solid var(--gold) !important;
+  font-weight: 700 !important;
+}
+
+body.theme-light .nav-book:hover {
+  background: var(--gold-light) !important;
+  border-color: var(--gold-light) !important;
+}
+
+/* Scrolled state */
+body.theme-light nav.scrolled {
+  background: #FAF6EB !important;
+  border-bottom: none !important;
+  box-shadow: none !important;
+}
+
+body.theme-light nav .text-white-dim {
+  color: #000000 !important;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   5. HERO / PAGE HERO (Bold 3D Typography in Light Theme)
+───────────────────────────────────────────────────────────── */
+body.theme-light .hero,
+body.theme-light .page-hero {
+  color: #FFFFFF !important;
+}
+
+/* 1. Light Theme 3D Carrara Marble Main Title (H1) */
+body.theme-light .hero-3d-title,
+body.theme-light .page-hero h1,
+body.theme-light .page-hero-content h1,
+body.theme-light .hero h1,
+body.theme-light .hero-content h1,
+body.theme-light .page-title {
+  font-family: var(--font-cormorant), 'Cormorant Garamond', serif !important;
+  font-weight: 700 !important;
+  color: #FFFFFF !important;
+  -webkit-text-fill-color: #FFFFFF !important;
+  text-shadow:
+    0 -1px 1px rgba(255, 255, 255, 1),
+    -1px 0 1px rgba(0, 0, 0, 0.85),
+    1px 0 1px rgba(0, 0, 0, 0.85),
+    0 1px 0 #E2E8F0,
+    0 2px 0 #CBD5E1,
+    0 3px 0 #94A3B8,
+    0 4px 0 #64748B,
+    0 5px 0 #475569,
+    0 6px 0 #334155,
+    0 7px 0 #1E293B,
+    0 8px 1px rgba(0, 0, 0, 0.95),
+    0 11px 18px rgba(0, 0, 0, 1),
+    0 18px 36px rgba(0, 0, 0, 0.95),
+    0 24px 50px rgba(0, 0, 0, 0.9),
+    0 0 25px rgba(0, 0, 0, 0.85) !important;
+  transform-style: preserve-3d;
+}
+
+/* 2. Light Theme 3D Chiseled Gold Accent inside H1 */
+body.theme-light .hero-3d-gold,
+body.theme-light .page-hero h1 em,
+body.theme-light .page-hero-content h1 em,
+body.theme-light .page-hero h1 span,
+body.theme-light .page-hero-content h1 span,
+body.theme-light .page-hero h1 span.hero-3d-gold,
+body.theme-light .page-hero-content h1 span.hero-3d-gold,
+body.theme-light .page-hero h1 .text-gold,
+body.theme-light .page-hero-content h1 .text-gold,
+body.theme-light .page-hero h1 .text-gold-light,
+body.theme-light .page-hero-content h1 .text-gold-light,
+body.theme-light .hero-custom-content .hero-title-typed {
+  font-family: var(--font-cormorant), 'Cormorant Garamond', serif !important;
+  font-weight: 700 !important;
+  text-transform: none !important;
+  letter-spacing: normal !important;
+  color: #FFF3BD !important;
+  -webkit-text-fill-color: #FFF3BD !important;
+  text-shadow:
+    0 -1px 1px rgba(255, 255, 255, 0.95),
+    -1px 0 1px rgba(70, 45, 0, 0.95),
+    1px 0 1px rgba(70, 45, 0, 0.95),
+    0 1px 0 #F3D270,
+    0 2px 0 #DEB349,
+    0 3px 0 #BE9128,
+    0 4px 0 #9E7416,
+    0 5px 0 #7A570C,
+    0 6px 0 #563C05,
+    0 7px 0 #362402,
+    0 8px 1px rgba(0, 0, 0, 0.95),
+    0 11px 20px rgba(0, 0, 0, 1),
+    0 18px 40px rgba(0, 0, 0, 0.95),
+    0 26px 54px rgba(0, 0, 0, 0.9),
+    0 0 30px rgba(243, 210, 112, 0.7) !important;
+}
+
+body.theme-light .page-hero h1 em,
+body.theme-light .page-hero-content h1 em,
+body.theme-light .hero-3d-title em,
+body.theme-light .hero-3d-title .italic,
+body.theme-light em.hero-3d-gold {
+  font-style: italic !important;
+}
+
+/* Explicit non-italic styles for light theme */
+body.theme-light .about-hero-title,
+body.theme-light .about-hero-title span,
+body.theme-light .about-hero-title .hero-3d-gold,
+body.theme-light .about-page .hero-3d-title,
+body.theme-light .about-page .hero-3d-title span,
+body.theme-light .about-page .hero-3d-gold,
+body.theme-light .about-page .page-hero h1 span,
+body.theme-light .about-page .page-hero-content h1 span,
+body.theme-light .about-page .page-hero h1 span.hero-3d-gold,
+body.theme-light .about-page .page-hero-content h1 span.hero-3d-gold,
+body.theme-light .hero-3d-title.not-italic,
+body.theme-light .hero-3d-title .not-italic,
+body.theme-light .hero-3d-gold.not-italic {
+  font-style: normal !important;
+}
+
+/* Global Heading Capitalization: natural Title Case across all h1, h2 (only first letter capital) */
+body.theme-light h1,
+body.theme-light h2,
+body.theme-light h1 *,
+body.theme-light h2 *,
+body.theme-light .hero-3d-title,
+body.theme-light .hero-3d-title *,
+body.theme-light .hero-3d-gold,
+body.theme-light .page-hero h1,
+body.theme-light .page-hero h2,
+body.theme-light .page-hero-content h1,
+body.theme-light .page-hero-content h2,
+body.theme-light .page-hero-content h1 span,
+body.theme-light .page-hero-content h2 span {
+  text-transform: none !important;
+}
+
+/* 3. Light Theme 3D Eyebrow Badge / Tag Text (Gold Bold 3D) */
+body.theme-light .hero-3d-badge,
+body.theme-light .hero-eyebrow-text,
+body.theme-light .hero-eyebrow-text .hero-char,
+body.theme-light .page-hero span.hero-3d-badge,
+body.theme-light .page-hero-content span.hero-3d-badge,
+body.theme-light .page-hero > span:not(.hero-gold-line):not(a),
+body.theme-light .page-hero-content > span:not(.hero-gold-line):not(a):not(.hero-3d-sub),
+body.theme-light .page-hero span:not(.w-10):not(.hero-gold-line):not(a):not(h1):not(h1 *):not(h2):not(h2 *):not(.hero-3d-title *):not(.hero-3d-gold),
+body.theme-light .page-hero-content span:not(.w-10):not(.hero-gold-line):not(a):not(.hero-3d-sub *):not(.hero-3d-sub):not(h1):not(h1 *):not(h2):not(h2 *):not(.hero-3d-title *):not(.hero-3d-gold) {
+  font-family: var(--font-montserrat), 'Montserrat', sans-serif !important;
+  font-weight: 800 !important;
+  color: #FFF3BD !important;
+  -webkit-text-fill-color: #FFF3BD !important;
+  letter-spacing: clamp(3px, 1.2vw, 7px);
+  text-transform: uppercase !important;
+  text-shadow:
+    0 -1px 1px rgba(255, 255, 255, 0.95),
+    -1px 0 1px rgba(60, 40, 0, 0.95),
+    1px 0 1px rgba(60, 40, 0, 0.95),
+    0 1px 0 #F3D270,
+    0 2px 0 #DEB349,
+    0 3px 0 #BE9128,
+    0 4px 0 #9E7416,
+    0 5px 0 #7A570C,
+    0 6px 0 #563C05,
+    0 7px 1px rgba(0, 0, 0, 0.95),
+    0 9px 16px rgba(0, 0, 0, 1),
+    0 14px 28px rgba(0, 0, 0, 0.95),
+    0 0 22px rgba(243, 210, 112, 0.65) !important;
+  transform-style: preserve-3d;
+}
+
+/* 4. Light Theme 3D Subtitle & Breadcrumb Paragraphs */
+body.theme-light .hero-3d-sub,
+body.theme-light .page-hero p,
+body.theme-light .page-hero-content p,
+body.theme-light .hero-subtitle,
+body.theme-light .hero-subtitle .hero-char {
+  font-family: var(--font-montserrat), 'Montserrat', sans-serif !important;
+  font-weight: 700 !important;
+  color: #FFFFFF !important;
+  -webkit-text-fill-color: #FFFFFF !important;
+  text-shadow:
+    0 -1px 1px rgba(255, 255, 255, 0.9),
+    -1px 0 1px rgba(0, 0, 0, 0.85),
+    1px 0 1px rgba(0, 0, 0, 0.85),
+    0 1px 0 #CBD5E1,
+    0 2px 0 #94A3B8,
+    0 3px 0 #64748B,
+    0 4px 1px rgba(0, 0, 0, 0.9),
+    0 7px 14px rgba(0, 0, 0, 1),
+    0 14px 28px rgba(0, 0, 0, 0.95),
+    0 0 16px rgba(0, 0, 0, 0.85) !important;
+}
+
+/* 5. Light Theme Breadcrumb Links inside Paragraphs */
+body.theme-light .hero-3d-sub a,
+body.theme-light .page-hero p a,
+body.theme-light .page-hero-content p a,
+body.theme-light .page-hero p .text-gold,
+body.theme-light .page-hero-content p .text-gold {
+  font-weight: 800 !important;
+  color: #FFF3BD !important;
+  -webkit-text-fill-color: #FFF3BD !important;
+  text-shadow:
+    0 1px 0 #F3D270,
+    0 2px 0 #BE9128,
+    0 3px 0 #7A570C,
+    0 4px 1px rgba(0, 0, 0, 0.9),
+    0 6px 12px rgba(0, 0, 0, 1),
+    0 0 14px rgba(243, 210, 112, 0.6) !important;
+}
+
+/* 6. Light Theme Divider Accent Line */
+body.theme-light .page-hero-content span.w-10,
+body.theme-light .page-hero span.w-10 {
+  height: 3px !important;
+  background: linear-gradient(90deg, #FFE382, #D4AF37, #9E7416) !important;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.8) inset,
+    0 2px 5px rgba(0, 0, 0, 0.8),
+    0 0 10px rgba(201, 168, 76, 0.6) !important;
+  border-radius: 2px;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   6. SECTION BACKGROUNDS
+───────────────────────────────────────────────────────────── */
+body.theme-light section,
+body.theme-light .section {
+  background: var(--black) !important;
+}
+
+/* Alternating cream panels */
+body.theme-light .section-alt,
+body.theme-light .rooms,
+body.theme-light .events,
+body.theme-light .about,
+body.theme-light .cta,
+body.theme-light .story,
+body.theme-light .timeline {
+  background: var(--dark) !important;
+}
+
+body.theme-light .gallery,
+body.theme-light .amenities,
+body.theme-light .restaurant,
+body.theme-light .location {
+  background: var(--dark-2) !important;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   7. TEXT UTILITIES
+───────────────────────────────────────────────────────────── */
+body.theme-light .text-white,
+body.theme-light .text-white-dim,
+body.theme-light .text-white-faint,
+body.theme-light .text-text-dim,
+body.theme-light .text-cream {
+  color: #000000 !important;
+}
+
+body.theme-light .text-gold,
+body.theme-light .text-gold-light {
+  color: var(--gold) !important;
+}
+
+/* Section eyebrows / labels */
+body.theme-light .eyebrow,
+body.theme-light .section-label {
+  color: var(--gold) !important;
+}
+
+/* Decorative lines */
+body.theme-light .eyebrow::before,
+body.theme-light .eyebrow::after {
+  background: var(--gold) !important;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   7B. 3D SECTION HEADINGS IN LIGHT THEME
+───────────────────────────────────────────────────────────── */
+body.theme-light section h1,
+body.theme-light section h2,
+body.theme-light .section h1,
+body.theme-light .section h2,
+body.theme-light h1:not(.hero-3d-title):not(.hero-title-main),
+body.theme-light h2:not(.hero-3d-title) {
+  font-family: var(--font-cormorant), 'Cormorant Garamond', serif !important;
+  font-weight: 700 !important;
+  color: #0A0A0A !important;
+  -webkit-text-fill-color: #0A0A0A !important;
+  text-transform: none !important;
+  text-shadow:
+    0 -1px 1px rgba(0, 0, 0, 0.15),
+    0 1px 0 #4B5563,
+    0 2px 0 #6B7280,
+    0 3px 0 #9CA3AF,
+    0 4px 1px rgba(0, 0, 0, 0.25),
+    0 6px 12px rgba(0, 0, 0, 0.15) !important;
+  transform-style: preserve-3d;
+}
+
+body.theme-light section h1 em,
+body.theme-light section h1 span,
+body.theme-light section h2 em,
+body.theme-light section h2 span,
+body.theme-light h1:not(.hero-3d-title) em,
+body.theme-light h2:not(.hero-3d-title) em,
+body.theme-light h1:not(.hero-3d-title) .text-gold,
+body.theme-light h2:not(.hero-3d-title) .text-gold,
+body.theme-light h1:not(.hero-3d-title) .text-gold-light,
+body.theme-light h2:not(.hero-3d-title) .text-gold-light {
+  font-style: italic !important;
+  font-weight: 700 !important;
+  color: #9E7416 !important;
+  -webkit-text-fill-color: #9E7416 !important;
+  text-shadow:
+    0 -1px 1px rgba(255, 255, 255, 0.6),
+    0 1px 0 #C9A84C,
+    0 2px 0 #B8860B,
+    0 3px 0 #8B6508,
+    0 4px 0 #5E4304,
+    0 5px 1px rgba(0, 0, 0, 0.35),
+    0 7px 14px rgba(184, 134, 11, 0.25),
+    0 0 14px rgba(201, 168, 76, 0.3) !important;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   8. CARDS
+───────────────────────────────────────────────────────────── */
+body.theme-light .card,
+body.theme-light .room-card,
+body.theme-light .stat-card,
+body.theme-light .value-card,
+body.theme-light .team-card,
+body.theme-light .amenity-card,
+body.theme-light .menu-item,
+body.theme-light .event-card,
+body.theme-light .premium-card {
+  background: #FFFFFF !important;
+  border: 1px solid var(--gold) !important;
+  box-shadow: none !important;
+}
+
+body.theme-light .card:hover,
+body.theme-light .room-card:hover,
+body.theme-light .event-card:hover,
+body.theme-light .premium-card:hover,
+body.theme-light .menu-item:hover,
+body.theme-light .amenity-card:hover {
+  background: #FAF6EB !important;
+  border-color: var(--gold) !important;
+  box-shadow: none !important;
+}
+
+/* Card text on light surface */
+body.theme-light .card h3,
+body.theme-light .room-card h3,
+body.theme-light .event-card h3,
+body.theme-light .premium-card h3,
+body.theme-light .amenity-card h3,
+body.theme-light .menu-item h3 {
+  color: #000000 !important;
+}
+
+body.theme-light .card p,
+body.theme-light .room-card p,
+body.theme-light .event-card p,
+body.theme-light .premium-card p,
+body.theme-light .amenity-card p,
+body.theme-light .menu-item p {
+  color: #000000 !important;
+}
+
+/* On-dark-surface cards (photo backgrounds) stay untouched */
+body.theme-light .on-dark-surface {
+  --black: #0A0A0A;
+  --color-black: #0A0A0A;
+}
+
+body.theme-light .on-dark-surface .text-white,
+body.theme-light .on-dark-surface h3,
+body.theme-light .on-dark-surface p {
+  color: #F5F0E8 !important;
+}
+
+body.theme-light .on-dark-surface .text-white-dim {
+  color: rgba(245, 240, 232, 0.75) !important;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   9. BUTTONS
+───────────────────────────────────────────────────────────── */
+body.theme-light .btn-primary,
+body.theme-light .btn-gold {
+  background: var(--gold) !important;
+  color: #000000 !important;
+  border: 2px solid var(--gold) !important;
+  box-shadow: none !important;
+  font-weight: 700 !important;
+}
+
+body.theme-light .btn-primary:hover,
+body.theme-light .btn-gold:hover {
+  background: var(--gold-light) !important;
+  border-color: var(--gold-light) !important;
+  color: #000000 !important;
+}
+
+/* Outline button */
+body.theme-light .btn-outline,
+body.theme-light .btn-outline span {
+  background: var(--gold) !important;
+  color: #000000 !important;
+  border: 2px solid var(--gold) !important;
+  font-weight: 700 !important;
+  text-shadow: none !important;
+}
+
+body.theme-light .btn-outline:hover,
+body.theme-light .btn-outline:hover span {
+  background: var(--gold-light) !important;
+  color: #000000 !important;
+  border-color: var(--gold-light) !important;
+  text-shadow: none !important;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   10. DIVIDERS & BORDERS
+───────────────────────────────────────────────────────────── */
+body.theme-light hr,
+body.theme-light .divider {
+  border-color: var(--gold) !important;
+}
+
+body.theme-light .border-gold {
+  border-color: var(--gold) !important;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   11. FORMS
+───────────────────────────────────────────────────────────── */
+body.theme-light input,
+body.theme-light textarea,
+body.theme-light select {
+  background: #FFFFFF !important;
+  color: #000000 !important;
+  border: 1px solid var(--gold) !important;
+}
+
+body.theme-light input:focus,
+body.theme-light textarea:focus,
+body.theme-light select:focus {
+  border-color: var(--gold) !important;
+  background: #FAF6EB !important;
+  box-shadow: none !important;
+  outline: none;
+}
+
+body.theme-light input::placeholder,
+body.theme-light textarea::placeholder {
+  color: #000000 !important;
+  opacity: 0.55 !important;
+}
+
+body.theme-light label {
+  color: #000000 !important;
+}
+
+/* Style select options specifically */
+body.theme-light option {
+  background: #FFFFFF !important;
+  color: #000000 !important;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   12. STATS SECTION
+───────────────────────────────────────────────────────────── */
+body.theme-light .stats,
+body.theme-light .stats-section {
+  background: var(--dark) !important;
+}
+
+body.theme-light .stat-number {
+  color: var(--gold) !important;
+}
+
+body.theme-light .stat-label {
+  color: #000000 !important;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   13. ROOM CARDS
+───────────────────────────────────────────────────────────── */
+body.theme-light .room-card-info {
+  background: #FFFFFF !important;
+}
+
+body.theme-light .room-type-badge {
+  background: #FAF6EB !important;
+  color: var(--gold) !important;
+  border: 1px solid var(--gold) !important;
+}
+
+body.theme-light .room-price {
+  color: var(--gold) !important;
+}
+
+body.theme-light .room-amenity-tag {
+  background: #FAF6EB !important;
+  color: #000000 !important;
+  border: 1px solid var(--gold) !important;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   14. GALLERY
+───────────────────────────────────────────────────────────── */
+body.theme-light .filter-tab {
+  color: #000000 !important;
+  border: 1px solid var(--gold) !important;
+  background: #FFFFFF !important;
+}
+
+body.theme-light .filter-tab:hover {
+  border-color: var(--gold) !important;
+  color: var(--gold) !important;
+  background: #FAF6EB !important;
+}
+
+body.theme-light .filter-tab.active {
+  background: var(--gold) !important;
+  color: #000000 !important;
+  border-color: var(--gold) !important;
+}
+
+body.theme-light .gallery-item {
+  background: #FAF6EB !important;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   15. BOOKING FORM
+───────────────────────────────────────────────────────────── */
+body.theme-light .booking-card,
+body.theme-light .booking-form-wrap {
+  background: #FFFFFF !important;
+  border: 1px solid var(--gold) !important;
+  box-shadow: none !important;
+}
+
+body.theme-light .booking-step {
+  background: #FAF6EB !important;
+  border: 1px solid var(--gold) !important;
+  color: #000000 !important;
+}
+
+body.theme-light .booking-step.active {
+  border-color: var(--gold) !important;
+  background: #FAF6EB !important;
+  color: var(--gold) !important;
+}
+
+body.theme-light .room-option {
+  background: #FFFFFF !important;
+  border: 1px solid var(--gold) !important;
+}
+
+body.theme-light .room-option:hover,
+body.theme-light .room-option.selected {
+  border-color: var(--gold) !important;
+  background: #FAF6EB !important;
+}
+
+body.theme-light .counter-btn {
+  background: #FAF6EB !important;
+  border: 1px solid var(--gold) !important;
+  color: var(--gold) !important;
+}
+
+body.theme-light .summary-box {
+  background: #FAF6EB !important;
+  border: 1px solid var(--gold) !important;
+  color: #000000 !important;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   16. CONTACT PAGE
+───────────────────────────────────────────────────────────── */
+body.theme-light .contact-card,
+body.theme-light .contact-info-card {
+  background: #FFFFFF !important;
+  border: 1px solid var(--gold) !important;
+}
+
+body.theme-light .contact-icon-wrap {
+  background: #FAF6EB !important;
+  border: 1px solid var(--gold) !important;
+  color: var(--gold) !important;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   17. TIMELINE (About page)
+───────────────────────────────────────────────────────────── */
+body.theme-light .timeline-line {
+  background: var(--gold) !important;
+}
+
+body.theme-light .timeline-dot {
+  background: #FFFFFF !important;
+  border-color: var(--gold) !important;
+}
+
+body.theme-light .timeline-item-card {
+  background: #FFFFFF !important;
+  border: 1px solid var(--gold) !important;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   18. FOOTER
+───────────────────────────────────────────────────────────── */
+body.theme-light footer {
+  background: #FAF6EB !important;
+  border-top: 1px solid var(--gold) !important;
+}
+
+body.theme-light .footer-logo {
+  color: #8C6512 !important;
+}
+
+body.theme-light footer p,
+body.theme-light footer span,
+body.theme-light footer a {
+  color: #000000 !important;
+}
+
+body.theme-light footer a:hover {
+  color: #8C6512 !important;
+}
+
+body.theme-light .footer-bottom {
+  border-top: 1px solid rgba(201, 168, 76, 0.4) !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+body.theme-light .footer-bottom p,
+body.theme-light .footer-bottom span,
+body.theme-light .footer-bottom a {
+  color: #222222 !important;
+  opacity: 1 !important;
+}
+
+body.theme-light .footer-bottom .text-gold {
+  color: #8C6512 !important;
+  font-weight: 600 !important;
+}
+
+body.theme-light .footer-bottom a:hover {
+  color: #8C6512 !important;
+}
+
+body.theme-light .footer-social a {
+  background: #FFFFFF !important;
+  border-color: var(--gold) !important;
+  color: #000000 !important;
+}
+
+body.theme-light .footer-social a:hover {
+  background: var(--gold) !important;
+  color: #000000 !important;
+  border-color: var(--gold) !important;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   19. LIGHTBOX / MODAL
+───────────────────────────────────────────────────────────── */
+body.theme-light .lightbox,
+body.theme-light .modal-overlay {
+  background: rgba(255, 255, 255, 0.98) !important;
+  backdrop-filter: none !important;
+}
+
+body.theme-light .lightbox-inner,
+body.theme-light .modal-content {
+  background: #FFFFFF !important;
+  border: 1px solid var(--gold) !important;
+  box-shadow: none !important;
+}
+
+body.theme-light .lightbox-close {
+  background: #FAF6EB !important;
+  color: #000000 !important;
+  border: 1px solid var(--gold) !important;
+}
+
+body.theme-light .lightbox-close:hover {
+  background: var(--gold) !important;
+  color: #000000 !important;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   20. MENU / RESTAURANT
+───────────────────────────────────────────────────────────── */
+body.theme-light .menu-price {
+  color: var(--gold) !important;
+}
+
+body.theme-light .menu-tag {
+  background: #FAF6EB !important;
+  color: var(--gold) !important;
+  border: 1px solid var(--gold) !important;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   21. CTA SECTION
+───────────────────────────────────────────────────────────── */
+body.theme-light .cta {
+  background: #FAF6EB !important;
+  border-top: 1px solid var(--gold) !important;
+  border-bottom: 1px solid var(--gold) !important;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   22. BADGES / TAGS
+───────────────────────────────────────────────────────────── */
+body.theme-light .badge-gold {
+  background: #FAF6EB !important;
+  color: var(--gold) !important;
+  border: 1px solid var(--gold) !important;
+}
+
+body.theme-light .badge-dark {
+  background: #FFFFFF !important;
+  color: #000000 !important;
+  border: 1px solid var(--gold) !important;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   23. THEME TOGGLE BUTTON
+───────────────────────────────────────────────────────────── */
+body.theme-light .theme-toggle-btn {
+  background: #FFFFFF !important;
+  border: 1px solid var(--gold) !important;
+  color: var(--gold) !important;
+}
+
+body.theme-light .theme-toggle-btn:hover {
+  background: #FAF6EB !important;
+  border-color: var(--gold) !important;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   24. TOAST NOTIFICATIONS & POP-UP MESSAGES
+───────────────────────────────────────────────────────────── */
+body.theme-light .toast-popup-card {
+  background: #FFFFFF !important;
+  border-width: 1px !important;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15) !important;
+}
+
+body.theme-light .toast-popup-message {
+  color: #000000 !important;
+  font-weight: 500 !important;
+}
+
+body.theme-light .toast-close-btn {
+  color: #555555 !important;
+}
+
+body.theme-light .toast-close-btn:hover {
+  color: #000000 !important;
+}
+
+/* Success toast in light mode */
+body.theme-light .toast-popup-success {
+  background: #FFFFFF !important;
+  border-color: #10B981 !important;
+}
+
+body.theme-light .toast-popup-success .toast-popup-title {
+  color: #047857 !important;
+}
+
+/* Error toast in light mode */
+body.theme-light .toast-popup-error {
+  background: #FFFFFF !important;
+  border-color: #EF4444 !important;
+}
+
+body.theme-light .toast-popup-error .toast-popup-title {
+  color: #B91C1C !important;
+}
+
+/* Info toast in light mode */
+body.theme-light .toast-popup-info {
+  background: #FFFFFF !important;
+  border-color: #C9A84C !important;
+}
+
+body.theme-light .toast-popup-info .toast-popup-title {
+  color: #B45309 !important;
+}
+
+/* Warning toast in light mode */
+body.theme-light .toast-popup-warning {
+  background: #FFFFFF !important;
+  border-color: #F59E0B !important;
+}
+
+body.theme-light .toast-popup-warning .toast-popup-title {
+  color: #B45309 !important;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   25. CUSTOM CURSOR
+───────────────────────────────────────────────────────────── */
+body.theme-light .cursor {
+  background: var(--gold) !important;
+}
+
+body.theme-light .cursor-ring {
+  border-color: var(--gold) !important;
+  opacity: 0.5;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   26. AUTH MODAL
+───────────────────────────────────────────────────────────── */
+body.theme-light .auth-modal,
+body.theme-light [class*="auth-modal"] {
+  background: #FFFFFF !important;
+  border: 1px solid var(--gold) !important;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   27. PROFILE PAGE
+───────────────────────────────────────────────────────────── */
+body.theme-light .profile-page {
+  background: #FFFFFF !important;
+}
+
+body.theme-light .profile-page .bg-dark-2 {
+  background: #FFFFFF !important;
+}
+
+body.theme-light .profile-page .bg-dark-3 {
+  background: #FAF6EB !important;
+}
+
+body.theme-light .profile-page .text-white,
+body.theme-light .profile-page .text-white-dim,
+body.theme-light .profile-page .text-text-dim {
+  color: #000000 !important;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   28. BOOKING PAGE LIGHT THEME
+───────────────────────────────────────────────────────────── */
+body.theme-light .booking-page {
+  background: #FFFFFF !important;
+}
+
+body.theme-light .booking-page .bg-dark-2,
+body.theme-light .booking-page .bg-dark-3 {
+  background: #FFFFFF !important;
+  color: #000000 !important;
+}
+
+body.theme-light .booking-page .text-white,
+body.theme-light .booking-page .text-text-dim {
+  color: #000000 !important;
+}
+
+body.theme-light .booking-page .border-border-gold\/15,
+body.theme-light .booking-page .border-border-gold\/20 {
+  border-color: var(--gold) !important;
+}
+
+/* Ensure no pseudo-element overlays or card boxes are rendered on hero sections */
+body.theme-light .page-hero::before,
+body.theme-light .page-hero::after,
+body.theme-light .hero::before,
+body.theme-light .hero::after {
+  display: none !important;
+  content: none !important;
+}
+
+
+
+/* Remove tailwind bottom gradients that turn into white washes */
+body.theme-light .bg-gradient-to-t {
+  background-image: none !important;
+}
+
+@media (min-width: 1024px) {
+  body.theme-light {
+    --hero-gradient-responsive: linear-gradient(transparent, transparent);
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────
+   30. BODY GOLDISH & CREAM TEXT LEGIBILITY ENHANCEMENTS (EXCLUDING FOOTER)
+───────────────────────────────────────────────────────────── */
+body.theme-light main .text-gold,
+body.theme-light main .text-gold-light,
+body.theme-light main .text-gold-dark,
+body.theme-light main .text-gold-dim,
+body.theme-light main .text-gold-pale,
+body.theme-light main .eyebrow,
+body.theme-light main .section-label,
+body.theme-light main .section-eyebrow,
+body.theme-light main .section-tag,
+body.theme-light main .section-title em,
+body.theme-light main .stat-number,
+body.theme-light main .room-type-badge,
+body.theme-light main .room-price,
+body.theme-light main .menu-price,
+body.theme-light main .menu-tag,
+body.theme-light main .badge-gold,
+body.theme-light main .booking-step.active,
+body.theme-light .nav-logo,
+body.theme-light .nav-logo span,
+body.theme-light nav a:hover,
+body.theme-light nav ul li a:hover,
+body.theme-light .nav-links a:hover,
+body.theme-light nav a.active,
+body.theme-light nav ul li a.active,
+body.theme-light .nav-links a.active,
+body.theme-light [class*="text-gold"]:not(footer *):not(.footer *):not(.footer-bottom *),
+body.theme-light span.text-gold:not(footer *):not(.footer *):not(.footer-bottom *),
+body.theme-light a.text-gold:not(footer *):not(.footer *):not(.footer-bottom *),
+body.theme-light p.text-gold:not(footer *):not(.footer *):not(.footer-bottom *),
+body.theme-light h1.text-gold,
+body.theme-light h2.text-gold,
+body.theme-light h3.text-gold,
+body.theme-light h4.text-gold,
+body.theme-light h5.text-gold,
+body.theme-light .font-cormorant.text-cream,
+body.theme-light .font-cormorant.text-gold,
+body.theme-light .booking-page h3,
+body.theme-light .booking-page h4 {
+  color: #8C6512 !important;
+  /* Deep rich bronze-gold for 100% legibility on white */
+  -webkit-text-fill-color: #8C6512 !important;
+  font-weight: 700 !important;
+  text-shadow: none !important;
+}
+
+body.theme-light .hero-shimmer-text,
+body.theme-light .hero-gold-shimmer {
+  background: none !important;
+  -webkit-background-clip: unset !important;
+  background-clip: unset !important;
+  -webkit-text-fill-color: #8C6512 !important;
+  color: #8C6512 !important;
+  font-weight: 700 !important;
+}
+
+/* Dim and faint text elements in main body stay crisp black as previous */
+body.theme-light main .text-text-dim,
+body.theme-light main .text-white-dim,
+body.theme-light main .text-white-faint,
+body.theme-light .booking-page .text-text-dim {
+  color: #000000 !important;
+  opacity: 1 !important;
+}
+
+/* Footer text remains normal weight */
+body.theme-light footer *,
+body.theme-light .footer *,
+body.theme-light .footer-bottom * {
+  font-weight: normal !important;
+}
+
+
+
+/* ─────────────────────────────────────────────────────────────
+   32. FEEDBACK & ALERT TEXT LEGIBILITY FOR LIGHT THEME
+───────────────────────────────────────────────────────────── */
+body.theme-light .text-red-400 {
+  color: #DC2626 !important;
+  font-weight: 600 !important;
+}
+
+body.theme-light .text-emerald-400 {
+  color: #059669 !important;
+  font-weight: 600 !important;
+}
+
+body.theme-light .text-amber-400 {
+  color: #D97706 !important;
+  font-weight: 600 !important;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   33. FORCE WHITE TEXT ON PHOTO BACKGROUNDS
+   Covers: CTA section (home/about), page heroes (events etc.)
+───────────────────────────────────────────────────────────── */
+body.theme-light .cta-content h2,
+body.theme-light .cta-content h3,
+body.theme-light .cta-content p,
+body.theme-light .cta-content span:not(.text-gold):not(.hero-3d-gold),
+body.theme-light .page-hero-content h1:not(.hero-3d-title),
+body.theme-light .page-hero-content h2,
+body.theme-light .page-hero-content h3,
+body.theme-light .page-hero-content p:not(.hero-3d-sub),
+body.theme-light .page-hero-content span:not(.hero-3d-badge):not(.hero-3d-gold):not(.text-gold):not(.text-gold-light),
+body.theme-light .page-hero-content div:not(.hero-3d-badge) {
+  color: #FFFFFF !important;
+}

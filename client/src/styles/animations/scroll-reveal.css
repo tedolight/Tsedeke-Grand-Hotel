@@ -1,0 +1,492 @@
+/* =================================================================
+   TSEDEKE GRAND HOTEL — ADVANCED SCROLL REVEAL & PAGE ANIMATION SYSTEM
+   =================================================================
+   Usage: add sr-base + sr-<variant> to any element.
+   The useScrollReveal hook adds .sr-visible when in viewport.
+   ================================================================= */
+
+/* ── Base hidden state ─────────────────────────────────────── */
+.sr-base {
+  will-change: opacity, transform;
+  transition:
+    opacity 1.4s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ── Variants: hidden state ─────────────────────────────────── */
+
+/* Rise from below (most common) */
+.sr-fade-up    { opacity: 0; transform: translateY(48px); }
+
+/* Fall from above */
+.sr-fade-down  { opacity: 0; transform: translateY(-40px); }
+
+/* Slide in from left */
+.sr-fade-left  { opacity: 0; transform: translateX(-60px); }
+
+/* Slide in from right */
+.sr-fade-right { opacity: 0; transform: translateX(60px); }
+
+/* Scale + fade (cards, images) */
+.sr-scale      { opacity: 0; transform: scale(0.88); }
+
+/* Scale up (counters, numbers) */
+.sr-scale-up   { opacity: 0; transform: scale(1.08); filter: blur(4px); }
+
+/* Blur fade (text-heavy blocks) */
+.sr-blur       { opacity: 0; filter: blur(10px); }
+
+/* 3D flip from bottom */
+.sr-flip-up    { opacity: 0; transform: perspective(800px) rotateX(-18deg) translateY(30px); }
+
+/* Zoom + slight rotation (gallery items) */
+.sr-zoom-tilt  { opacity: 0; transform: scale(0.85) rotate(-1.5deg); }
+
+/* Clip wipe from left (dividers, gold lines) */
+.sr-wipe       { opacity: 0; transform: scaleX(0); transform-origin: left center; }
+
+/* ── Visible state — identical for all variants ─────────────── */
+.sr-visible {
+  opacity: 1 !important;
+  transform: none !important;
+  filter: none !important;
+}
+
+/* ── Delay modifiers ─────────────────────────────────────────── */
+.sr-delay-50  { transition-delay: 50ms;  }
+.sr-delay-100 { transition-delay: 100ms; }
+.sr-delay-150 { transition-delay: 150ms; }
+.sr-delay-200 { transition-delay: 200ms; }
+.sr-delay-250 { transition-delay: 250ms; }
+.sr-delay-300 { transition-delay: 300ms; }
+.sr-delay-400 { transition-delay: 400ms; }
+.sr-delay-500 { transition-delay: 500ms; }
+.sr-delay-600 { transition-delay: 600ms; }
+.sr-delay-700 { transition-delay: 700ms; }
+.sr-delay-800 { transition-delay: 800ms; }
+
+/* ── Duration overrides ──────────────────────────────────────── */
+.sr-fast   { transition-duration: 0.85s; }
+.sr-slow   { transition-duration: 1.8s; }
+.sr-slower { transition-duration: 2.5s; }
+
+/* =================================================================
+   SECTION HEADING SYSTEM
+   A gold overline + heading + subtitle combo that reveals elegantly
+   ================================================================= */
+
+.section-overline {
+  display: block;
+  font-family: var(--font-montserrat, 'Montserrat', sans-serif);
+  font-size: 10px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: var(--color-gold, #C9A84C);
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.section-title-gold-line {
+  width: 0;
+  height: 1px;
+  background: linear-gradient(90deg, var(--color-gold, #C9A84C), transparent);
+  margin-bottom: 20px;
+  transition: width 1s cubic-bezier(0.16, 1, 0.3, 1) 0.3s;
+}
+
+.sr-visible .section-title-gold-line,
+.section-title-gold-line.sr-visible {
+  width: 60px;
+}
+
+/* =================================================================
+   PREMIUM CARD HOVER SYSTEM (applies globally to .premium-card)
+   ================================================================= */
+
+.premium-card {
+  transition:
+    transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1),
+    box-shadow 0.4s cubic-bezier(0.25, 0.8, 0.25, 1),
+    border-color 0.4s ease !important;
+}
+
+.premium-card:hover {
+  transform: translateY(-6px) !important;
+  box-shadow:
+    0 20px 50px rgba(0, 0, 0, 0.6),
+    0 0 0 1px rgba(201, 168, 76, 0.18),
+    0 0 30px rgba(201, 168, 76, 0.08) !important;
+}
+
+/* =================================================================
+   GOLD NUMBER COUNTER (StatsSection, etc.)
+   ================================================================= */
+
+@keyframes countPulse {
+  0%   { transform: scale(1);    color: var(--color-gold); }
+  50%  { transform: scale(1.05); color: var(--color-gold-light); }
+  100% { transform: scale(1);    color: var(--color-gold); }
+}
+
+.stat-number-visible {
+  animation: countPulse 0.6s ease-out;
+}
+
+/* =================================================================
+   CONTINUOUS PAGE-WIDE AMBIENT ANIMATIONS
+   ================================================================= */
+
+/* Subtle background grid pulse (applies to any section with this class) */
+@keyframes ambientGridPulse {
+  0%, 100% { opacity: 0.03; }
+  50%       { opacity: 0.06; }
+}
+
+.ambient-grid::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(201, 168, 76, 1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(201, 168, 76, 1) 1px, transparent 1px);
+  background-size: 60px 60px;
+  opacity: 0.03;
+  animation: ambientGridPulse 8s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Gold shimmer border on section headings */
+@keyframes borderShimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+.shimmer-border-bottom {
+  position: relative;
+}
+
+.shimmer-border-bottom::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--color-gold) 30%,
+    #fffde0 50%,
+    var(--color-gold) 70%,
+    transparent 100%
+  );
+  background-size: 200% auto;
+  animation: borderShimmer 4s linear infinite;
+}
+
+/* Gold top accent bar that appears on hover of sections */
+@keyframes goldBarReveal {
+  from { transform: scaleX(0); opacity: 0; }
+  to   { transform: scaleX(1); opacity: 1; }
+}
+
+/* =================================================================
+   IMAGE REVEAL — sophisticated image load-in
+   ================================================================= */
+
+@keyframes imageReveal {
+  0% {
+    clip-path: inset(0 100% 0 0);
+    opacity: 0;
+  }
+  40% {
+    opacity: 1;
+  }
+  100% {
+    clip-path: inset(0 0% 0 0);
+    opacity: 1;
+  }
+}
+
+.sr-image-reveal {
+  opacity: 0;
+  clip-path: inset(0 100% 0 0);
+  transition:
+    clip-path 1.1s cubic-bezier(0.77, 0, 0.18, 1),
+    opacity 0.4s ease;
+}
+
+.sr-image-reveal.sr-visible {
+  opacity: 1 !important;
+  clip-path: inset(0 0% 0 0) !important;
+  transform: none !important;
+}
+
+/* =================================================================
+   FORM ELEMENT ANIMATIONS
+   ================================================================= */
+
+.form-field-animate {
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.form-field-animate.sr-visible {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+/* Input focus glow pulse */
+@keyframes inputGlowPulse {
+  0%, 100% { box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.18); }
+  50%       { box-shadow: 0 0 0 5px rgba(201, 168, 76, 0.28); }
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  animation: inputGlowPulse 2s ease-in-out infinite;
+}
+
+/* =================================================================
+   BUTTON RIPPLE EFFECT (global .btn-primary, .btn-outline, .btn-gold)
+   ================================================================= */
+
+@keyframes rippleOut {
+  from {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0.5;
+  }
+  to {
+    transform: translate(-50%, -50%) scale(3);
+    opacity: 0;
+  }
+}
+
+.btn-primary,
+.btn-outline,
+.btn-gold {
+  position: relative;
+  overflow: hidden;
+}
+
+/* =================================================================
+   FOOTER REVEAL
+   ================================================================= */
+
+footer {
+  position: relative;
+}
+
+/* =================================================================
+   PAGE TRANSITION — used on route changes
+   ================================================================= */
+
+@keyframes pageEnter {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.page-enter {
+  animation: pageEnter 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* =================================================================
+   GOLD GLOW PULSE — for icons, badges, accents
+   ================================================================= */
+
+@keyframes goldGlowPulse {
+  0%, 100% {
+    box-shadow: 0 0 8px rgba(201,168,76,0.4), 0 0 20px rgba(201,168,76,0.2);
+  }
+  50% {
+    box-shadow: 0 0 16px rgba(201,168,76,0.8), 0 0 40px rgba(201,168,76,0.4);
+  }
+}
+
+.animate-gold-glow {
+  animation: goldGlowPulse 3s ease-in-out infinite;
+}
+
+/* =================================================================
+   STAGGER CHILDREN — parent class that staggers child animations
+   ================================================================= */
+
+.stagger-children > * {
+  opacity: 0;
+  transform: translateY(30px);
+  transition:
+    opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.stagger-children.sr-visible > *:nth-child(1)  { opacity: 1; transform: none; transition-delay: 0ms; }
+.stagger-children.sr-visible > *:nth-child(2)  { opacity: 1; transform: none; transition-delay: 100ms; }
+.stagger-children.sr-visible > *:nth-child(3)  { opacity: 1; transform: none; transition-delay: 200ms; }
+.stagger-children.sr-visible > *:nth-child(4)  { opacity: 1; transform: none; transition-delay: 300ms; }
+.stagger-children.sr-visible > *:nth-child(5)  { opacity: 1; transform: none; transition-delay: 400ms; }
+.stagger-children.sr-visible > *:nth-child(6)  { opacity: 1; transform: none; transition-delay: 500ms; }
+.stagger-children.sr-visible > *:nth-child(7)  { opacity: 1; transform: none; transition-delay: 600ms; }
+.stagger-children.sr-visible > *:nth-child(8)  { opacity: 1; transform: none; transition-delay: 700ms; }
+.stagger-children.sr-visible > *:nth-child(9)  { opacity: 1; transform: none; transition-delay: 800ms; }
+.stagger-children.sr-visible > *:nth-child(10) { opacity: 1; transform: none; transition-delay: 900ms; }
+.stagger-children.sr-visible > *:nth-child(11) { opacity: 1; transform: none; transition-delay: 1000ms; }
+.stagger-children.sr-visible > *:nth-child(12) { opacity: 1; transform: none; transition-delay: 1100ms; }
+
+
+/* =================================================================
+   HORIZONTAL SCROLL TICKER (for amenities, features)
+   ================================================================= */
+
+@keyframes tickerScroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.ticker-track {
+  display: flex;
+  width: max-content;
+  animation: tickerScroll 30s linear infinite;
+}
+
+.ticker-track:hover {
+  animation-play-state: paused;
+}
+
+/* =================================================================
+   FLOATING LABEL FORMS
+   ================================================================= */
+
+.floating-label-group {
+  position: relative;
+}
+
+.floating-label-group label {
+  position: absolute;
+  top: 14px;
+  left: 16px;
+  font-size: 12px;
+  color: rgba(245,240,232,0.45);
+  pointer-events: none;
+  transition: all 0.25s ease;
+}
+
+.floating-label-group input:focus ~ label,
+.floating-label-group input:not(:placeholder-shown) ~ label,
+.floating-label-group textarea:focus ~ label,
+.floating-label-group textarea:not(:placeholder-shown) ~ label {
+  top: -8px;
+  left: 12px;
+  font-size: 10px;
+  color: var(--color-gold);
+  background: var(--color-dark-3);
+  padding: 0 4px;
+  letter-spacing: 1px;
+}
+
+/* =================================================================
+   SCROLL PROGRESS BAR (top of viewport)
+   ================================================================= */
+
+.scroll-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--color-gold-dark), var(--color-gold), var(--color-gold-light));
+  transform-origin: left;
+  z-index: 9999;
+  pointer-events: none;
+  box-shadow: 0 0 8px rgba(201,168,76,0.6);
+}
+
+/* =================================================================
+   ROOM / GALLERY CARD OVERLAY REVEAL
+   ================================================================= */
+
+@keyframes overlaySlideUp {
+  from { transform: translateY(100%); }
+  to   { transform: translateY(0); }
+}
+
+.card-overlay-reveal {
+  transform: translateY(100%);
+  transition: transform 0.45s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.group:hover .card-overlay-reveal {
+  transform: translateY(0);
+}
+
+/* =================================================================
+   TESTIMONIAL / QUOTE ANIMATION
+   ================================================================= */
+
+@keyframes quoteMarkFloat {
+  0%, 100% { transform: translateY(0) rotate(-5deg);  opacity: 0.15; }
+  50%       { transform: translateY(-6px) rotate(0deg); opacity: 0.28; }
+}
+
+.quote-mark-float {
+  animation: quoteMarkFloat 5s ease-in-out infinite;
+}
+
+/* =================================================================
+   AMBIENT GOLD CORNER ACCENTS (decorative)
+   ================================================================= */
+
+.gold-corner {
+  position: relative;
+}
+
+.gold-corner::before,
+.gold-corner::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.gold-corner::before {
+  top: 8px;
+  left: 8px;
+  border-top: 1px solid var(--color-gold);
+  border-left: 1px solid var(--color-gold);
+}
+
+.gold-corner::after {
+  bottom: 8px;
+  right: 8px;
+  border-bottom: 1px solid var(--color-gold);
+  border-right: 1px solid var(--color-gold);
+}
+
+.gold-corner:hover::before,
+.gold-corner:hover::after {
+  opacity: 1;
+}
+
+/* =================================================================
+   REDUCE MOTION — respect user preferences
+   ================================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .sr-base,
+  .sr-image-reveal,
+  .form-field-animate,
+  .stagger-children > *,
+  .hero-char,
+  .hero-particle,
+  .ticker-track {
+    transition: none !important;
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    clip-path: none !important;
+  }
+}

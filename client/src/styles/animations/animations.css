@@ -1,0 +1,948 @@
+/* Custom cursor styles */
+.cursor-dot {
+  width: 8px;
+  height: 8px;
+  background: var(--gold);
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: transform 0.1s ease;
+  mix-blend-mode: difference;
+}
+
+.cursor-ring {
+  position: fixed;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--gold);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  transition: all 0.15s ease;
+  opacity: 0.6;
+}
+
+/* Page load zoom effect */
+@keyframes zoomBg {
+  from {
+    transform: scale(1.02);
+  }
+
+  to {
+    transform: scale(1.08);
+  }
+}
+
+.zoom-animation {
+  animation: zoomBg 18s ease-in-out infinite alternate;
+}
+
+/* Glow orbit animation */
+@keyframes orbit {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.orbit-animation {
+  animation: orbit 20s linear infinite;
+}
+
+/* Modal / Overlay fade-in + scale */
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(-8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Toast slide-in from right */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Fade in */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.3s ease;
+}
+
+/* Scale in */
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-scaleIn {
+  animation: scaleIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+/* =====================================================
+   ADVANCED HERO ANIMATIONS
+   ===================================================== */
+
+/* 1. Character-by-character 3D rise + deblur */
+@keyframes charReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(70px) rotateX(-50deg) scale(0.75);
+    filter: blur(14px);
+  }
+
+  65% {
+    opacity: 1;
+    filter: blur(0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0) rotateX(0deg) scale(1);
+    filter: blur(0);
+  }
+}
+
+.hero-char {
+  display: inline-block;
+  opacity: 0;
+  animation: charReveal 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* 2. Continuous gold shimmer sweep */
+@keyframes shimmerSweep {
+  0% {
+    background-position: -250% center;
+  }
+
+  100% {
+    background-position: 350% center;
+  }
+}
+
+.hero-shimmer-text {
+  background: linear-gradient(105deg,
+      var(--gold) 0%,
+      var(--gold) 28%,
+      #fff8a0 44%,
+      #fffde0 50%,
+      #fff8a0 56%,
+      var(--gold) 72%,
+      var(--gold) 100%);
+  background-size: 250% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmerSweep 3.5s linear infinite;
+}
+
+/* 3. Floating 3D Gold Luxury Balloons / Orbs */
+@keyframes balloonFloat {
+  0% {
+    transform: translateY(20px) translateX(0) scale(0.7);
+    opacity: 0;
+  }
+
+  15% {
+    opacity: 0.95;
+    transform: translateY(0) translateX(8px) scale(1);
+  }
+
+  50% {
+    transform: translateY(-90px) translateX(-14px) scale(1.06);
+    opacity: 0.9;
+  }
+
+  85% {
+    opacity: 0.85;
+    transform: translateY(-180px) translateX(10px) scale(0.95);
+  }
+
+  100% {
+    transform: translateY(-260px) translateX(-6px) scale(0.65);
+    opacity: 0;
+  }
+}
+
+@keyframes balloonTwinkle {
+  0%, 100% {
+    box-shadow:
+      0 0 10px 2px rgba(243, 210, 112, 0.75),
+      0 3px 8px rgba(0, 0, 0, 0.55),
+      inset -1px -1.5px 3px rgba(0, 0, 0, 0.4),
+      inset 1px 1px 2px rgba(255, 255, 255, 0.95);
+    filter: brightness(1);
+  }
+
+  50% {
+    box-shadow:
+      0 0 18px 4px rgba(255, 230, 120, 0.95),
+      0 4px 10px rgba(0, 0, 0, 0.65),
+      inset -1px -1.5px 3px rgba(0, 0, 0, 0.3),
+      inset 1.5px 1.5px 2.5px rgba(255, 255, 255, 1);
+    filter: brightness(1.2);
+  }
+}
+
+.hero-particles-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.hero-particle {
+  position: absolute;
+  border-radius: 50%;
+  /* 3D Gold Sphere / Balloon lighting: top-left specular glint, champagne golden body, deeper shaded bottom */
+  background: radial-gradient(circle at 32% 28%, #FFFFFF 0%, #FFF4B8 16%, #E5BE57 42%, #B88B22 72%, #684805 100%);
+  box-shadow:
+    0 0 10px 2px rgba(243, 210, 112, 0.75),
+    0 3px 8px rgba(0, 0, 0, 0.55),
+    inset -1px -1.5px 3px rgba(0, 0, 0, 0.4),
+    inset 1px 1px 2px rgba(255, 255, 255, 0.95);
+  animation:
+    balloonFloat var(--dur, 8s) ease-in-out var(--del, 0s) infinite,
+    balloonTwinkle 3s ease-in-out var(--del, 0s) infinite;
+  backdrop-filter: blur(1px);
+}
+
+/* 4. One-shot cinematic horizontal sweep on load */
+@keyframes sweepAcross {
+  0% {
+    transform: scaleX(0);
+    transform-origin: left center;
+    opacity: 1;
+  }
+
+  48% {
+    transform: scaleX(1);
+    transform-origin: left center;
+    opacity: 1;
+  }
+
+  52% {
+    transform: scaleX(1);
+    transform-origin: right center;
+    opacity: 1;
+  }
+
+  100% {
+    transform: scaleX(0);
+    transform-origin: right center;
+    opacity: 0;
+  }
+}
+
+.hero-sweep-line {
+  display: none !important;
+}
+
+/* 5. Eyebrow letter-spacing expand */
+@keyframes eyebrowExpand {
+  from {
+    opacity: 0;
+    letter-spacing: 20px;
+    filter: blur(4px);
+  }
+
+  to {
+    opacity: 1;
+    letter-spacing: 8px;
+    filter: blur(0);
+  }
+}
+
+@keyframes dashGrow {
+  from {
+    transform: scaleX(0);
+    opacity: 0;
+  }
+
+  to {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+}
+
+.hero-eyebrow-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  margin-bottom: 24px;
+  perspective: 800px;
+}
+
+.hero-eyebrow-text {
+  display: inline-block;
+  font-family: var(--font-montserrat), 'Montserrat', sans-serif;
+  font-size: clamp(13px, 1.25vw, 16px);
+  letter-spacing: clamp(6px, 1.2vw, 10px);
+  text-transform: uppercase;
+  font-weight: 800;
+  color: #FFF3BD;
+  transform-style: preserve-3d;
+  animation: eyebrowExpand 1.8s cubic-bezier(0.16, 1, 0.3, 1) 0.5s both;
+  transition: transform 0.35s ease, text-shadow 0.35s ease;
+}
+
+/* 3D chiseled gold extrusion effect applied directly to each character */
+.hero-eyebrow-text,
+.hero-eyebrow-text .hero-char {
+  font-weight: 800;
+  color: #FFF3BD;
+  text-shadow:
+    0 -1px 1px rgba(255, 255, 255, 0.95),
+    0 1px 0 #F3D270,
+    0 2px 0 #DEB349,
+    0 3px 0 #BE9128,
+    0 4px 0 #9E7416,
+    0 5px 0 #7A570C,
+    0 6px 0 #563C05,
+    0 7px 2px rgba(0, 0, 0, 0.75),
+    0 10px 16px rgba(0, 0, 0, 0.85),
+    0 15px 30px rgba(0, 0, 0, 0.95),
+    0 0 24px rgba(243, 210, 112, 0.5);
+}
+
+.hero-eyebrow-wrap:hover .hero-eyebrow-text,
+.hero-eyebrow-wrap:hover .hero-eyebrow-text .hero-char {
+  text-shadow:
+    0 -1px 1px rgba(255, 255, 255, 1),
+    0 1px 0 #F8DD85,
+    0 2px 0 #E5BE57,
+    0 3px 0 #C99E32,
+    0 4px 0 #A87E1B,
+    0 5px 0 #855E0E,
+    0 6px 0 #5E4105,
+    0 7px 0 #463002,
+    0 8px 3px rgba(0, 0, 0, 0.8),
+    0 12px 20px rgba(0, 0, 0, 0.9),
+    0 18px 36px rgba(0, 0, 0, 0.98),
+    0 0 32px rgba(243, 210, 112, 0.75);
+}
+
+.hero-eyebrow-dash {
+  display: block;
+  width: 48px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #FFE382, #C9A84C);
+  transform-origin: left center;
+  animation: dashGrow 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.9s both;
+  box-shadow: 0 0 10px rgba(212, 175, 55, 0.7), 0 2px 4px rgba(0, 0, 0, 0.8);
+  border-radius: 2px;
+}
+
+.hero-eyebrow-dash:last-child {
+  background: linear-gradient(90deg, #C9A84C, #FFE382, transparent);
+  transform-origin: right center;
+}
+
+/* 6. Main title layout */
+.hero-title-wrap {
+  perspective: 1200px;
+  margin-bottom: 20px;
+  /* Fixed height = prevents layout shift when typed phrase wraps */
+  height: clamp(80px, 12vw, 130px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transform-style: preserve-3d;
+}
+
+.hero-title-main {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  flex-wrap: nowrap;
+  /* never wrap — keeps single stable line */
+  font-size: clamp(32px, 5vw, 56px);
+  font-family: var(--font-cormorant), 'Cormorant Garamond', serif;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  margin: 0;
+  white-space: nowrap;
+  transform-style: preserve-3d;
+}
+
+/* 3D Carrara/Platinum marble extrusion for "Tsedeke Grand" */
+.hero-title-white,
+.hero-title-static,
+.hero-title-static .hero-char {
+  color: #FFFFFF;
+  display: inline-block;
+  flex-shrink: 0;
+  font-weight: 700;
+  text-shadow:
+    0 -1px 1px rgba(255, 255, 255, 1),
+    0 1px 0 #E2E8F0,
+    0 2px 0 #CBD5E1,
+    0 3px 0 #94A3B8,
+    0 4px 0 #64748B,
+    0 5px 0 #475569,
+    0 6px 0 #334155,
+    0 7px 2px rgba(0, 0, 0, 0.8),
+    0 10px 18px rgba(0, 0, 0, 0.85),
+    0 16px 32px rgba(0, 0, 0, 0.95),
+    0 0 30px rgba(255, 255, 255, 0.35);
+  transition: text-shadow 0.35s ease;
+}
+
+.hero-title-spacer {
+  display: inline-block;
+  flex-shrink: 0;
+  width: 0.25em;
+}
+
+/* 3D Chiseled Gold extrusion for typed phrase (e.g. "Hotel And Resort") */
+.hero-title-typed {
+  font-style: italic;
+  font-weight: 700;
+  color: #FFF3BD;
+  display: inline-block;
+  min-width: 4px;
+  text-shadow:
+    0 -1px 1px rgba(255, 255, 255, 0.95),
+    0 1px 0 #F3D270,
+    0 2px 0 #DEB349,
+    0 3px 0 #BE9128,
+    0 4px 0 #9E7416,
+    0 5px 0 #7A570C,
+    0 6px 0 #563C05,
+    0 7px 2px rgba(0, 0, 0, 0.8),
+    0 10px 18px rgba(0, 0, 0, 0.9),
+    0 16px 36px rgba(0, 0, 0, 0.95),
+    0 0 28px rgba(243, 210, 112, 0.6);
+  transition: text-shadow 0.35s ease;
+}
+
+/* Gold 3D pulse shimmer */
+@keyframes gold3DPulse {
+  0%, 100% {
+    filter: drop-shadow(0 0 12px rgba(243, 210, 112, 0.45));
+  }
+  50% {
+    filter: drop-shadow(0 0 24px rgba(243, 210, 112, 0.85));
+  }
+}
+
+.hero-gold-shimmer {
+  color: #FFF3BD;
+  -webkit-text-fill-color: #FFF3BD;
+  animation: gold3DPulse 3.5s ease-in-out infinite;
+}
+
+.hero-title-wrap:hover .hero-title-static,
+.hero-title-wrap:hover .hero-title-static .hero-char {
+  text-shadow:
+    0 -1px 1px rgba(255, 255, 255, 1),
+    0 1px 0 #F1F5F9,
+    0 2px 0 #E2E8F0,
+    0 3px 0 #CBD5E1,
+    0 4px 0 #94A3B8,
+    0 5px 0 #64748B,
+    0 6px 0 #475569,
+    0 7px 0 #334155,
+    0 8px 3px rgba(0, 0, 0, 0.85),
+    0 12px 22px rgba(0, 0, 0, 0.9),
+    0 20px 40px rgba(0, 0, 0, 0.98),
+    0 0 40px rgba(255, 255, 255, 0.5);
+}
+
+.hero-title-wrap:hover .hero-title-typed {
+  text-shadow:
+    0 -1px 1px rgba(255, 255, 255, 1),
+    0 1px 0 #F8DD85,
+    0 2px 0 #E5BE57,
+    0 3px 0 #C99E32,
+    0 4px 0 #A87E1B,
+    0 5px 0 #855E0E,
+    0 6px 0 #5E4105,
+    0 7px 0 #463002,
+    0 8px 3px rgba(0, 0, 0, 0.85),
+    0 12px 22px rgba(0, 0, 0, 0.92),
+    0 20px 42px rgba(0, 0, 0, 0.98),
+    0 0 36px rgba(243, 210, 112, 0.8);
+}
+
+/* Blinking cursor */
+@keyframes cursorBlink {
+  0%,
+  45% {
+    opacity: 1;
+  }
+
+  55%,
+  100% {
+    opacity: 0;
+  }
+}
+
+.hero-cursor {
+  display: inline-block;
+  font-style: normal;
+  font-weight: 700;
+  margin-left: 2px;
+  animation: cursorBlink 1s step-end infinite;
+  color: #FFE382;
+  text-shadow:
+    0 1px 0 #DEB349,
+    0 2px 0 #9E7416,
+    0 4px 10px rgba(0, 0, 0, 0.8);
+}
+
+/* 7. Self-drawing gold divider + gem */
+@keyframes lineGrow {
+  from {
+    transform: scaleX(0);
+  }
+
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes gemPop {
+  0% {
+    transform: rotate(45deg) scale(0);
+    opacity: 0;
+  }
+
+  60% {
+    transform: rotate(225deg) scale(1.35);
+    opacity: 1;
+  }
+
+  100% {
+    transform: rotate(405deg) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes gemPulse {
+  0%,
+  100% {
+    box-shadow:
+      0 0 0 1.5px rgba(255, 255, 255, 0.9),
+      0 3px 8px rgba(0, 0, 0, 0.8),
+      0 0 16px 4px rgba(243, 210, 112, 0.85),
+      0 0 35px 8px rgba(212, 175, 55, 0.5);
+    filter: brightness(1);
+  }
+
+  50% {
+    box-shadow:
+      0 0 0 2px rgba(255, 255, 255, 1),
+      0 5px 12px rgba(0, 0, 0, 0.9),
+      0 0 24px 8px rgba(255, 230, 120, 1),
+      0 0 50px 14px rgba(212, 175, 55, 0.75);
+    filter: brightness(1.2);
+  }
+}
+
+.hero-line-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 28px;
+  perspective: 800px;
+  transform-style: preserve-3d;
+}
+
+.hero-line-draw {
+  width: clamp(90px, 12vw, 150px);
+  height: 3.5px;
+  background: linear-gradient(90deg, transparent, #FFE382 35%, #D4AF37 75%, #9E7416 100%);
+  transform: scaleX(0);
+  transform-origin: right center;
+  animation: lineGrow 1.6s cubic-bezier(0.77, 0, 0.18, 1) 1.4s forwards;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.9) inset,
+    0 -1px 0 rgba(90, 60, 5, 0.85) inset,
+    0 3px 6px rgba(0, 0, 0, 0.85),
+    0 0 14px rgba(212, 175, 55, 0.6);
+  border-radius: 3px;
+}
+
+.hero-line-draw:last-child {
+  background: linear-gradient(90deg, #9E7416 0%, #D4AF37 25%, #FFE382 65%, transparent 100%);
+  transform-origin: left center;
+  animation-delay: 1.4s;
+}
+
+.hero-line-gem {
+  width: 16px;
+  height: 16px;
+  background: linear-gradient(135deg, #FFFFFF 0%, #FFF4B8 25%, #E5BE57 50%, #B88B22 75%, #5E4105 100%);
+  border-radius: 2.5px;
+  flex-shrink: 0;
+  transform-style: preserve-3d;
+  animation:
+    gemPop 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) 2s forwards,
+    gemPulse 2.5s ease-in-out 2.7s infinite;
+  box-shadow:
+    0 0 0 1.5px rgba(255, 255, 255, 0.9),
+    0 3px 8px rgba(0, 0, 0, 0.8),
+    0 0 16px 4px rgba(243, 210, 112, 0.85);
+}
+
+/* 8. Subtitle */
+.hero-sub-wrap {
+  margin-bottom: 40px;
+  min-height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 800px;
+  animation: ctaReveal 1.4s cubic-bezier(0.16, 1, 0.3, 1) 1.4s both;
+}
+
+.hero-subtitle {
+  display: inline-block;
+  text-align: center;
+  font-family: var(--font-cinzel), 'Cinzel', serif;
+  font-size: clamp(13px, 1.7vw, 19px);
+  letter-spacing: clamp(4px, 1.1vw, 8px);
+  text-transform: uppercase;
+  color: #FFFFFF;
+  font-weight: 800;
+  white-space: nowrap;
+  transform-origin: center center;
+  transform-style: preserve-3d;
+  will-change: transform, opacity;
+  animation: subtitleBreathe 6s ease-in-out 3s infinite;
+  transition: text-shadow 0.35s ease, transform 0.35s ease;
+}
+
+/* 3D Chiseled white marble extrusion for subtitle characters */
+.hero-subtitle,
+.hero-subtitle .hero-char {
+  font-weight: 800;
+  color: #FFFFFF;
+  text-shadow:
+    0 -1px 1px rgba(255, 255, 255, 1),
+    0 1px 0 #E2E8F0,
+    0 2px 0 #CBD5E1,
+    0 3px 0 #94A3B8,
+    0 4px 0 #64748B,
+    0 5px 0 #475569,
+    0 6px 1px rgba(0, 0, 0, 0.75),
+    0 8px 14px rgba(0, 0, 0, 0.85),
+    0 14px 28px rgba(0, 0, 0, 0.95),
+    0 0 20px rgba(255, 255, 255, 0.3);
+}
+
+.hero-sub-wrap:hover .hero-subtitle,
+.hero-sub-wrap:hover .hero-subtitle .hero-char {
+  text-shadow:
+    0 -1px 1px rgba(255, 255, 255, 1),
+    0 1px 0 #F1F5F9,
+    0 2px 0 #E2E8F0,
+    0 3px 0 #CBD5E1,
+    0 4px 0 #94A3B8,
+    0 5px 0 #64748B,
+    0 6px 0 #475569,
+    0 7px 2px rgba(0, 0, 0, 0.8),
+    0 10px 18px rgba(0, 0, 0, 0.9),
+    0 18px 36px rgba(0, 0, 0, 0.98),
+    0 0 28px rgba(255, 255, 255, 0.5);
+}
+
+.hero-subtitle .hero-char {
+  animation: charReveal 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* 9. CTA pop reveal */
+@keyframes ctaReveal {
+  from {
+    opacity: 0;
+    transform: translateY(28px) scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.hero-cta-container {
+  animation: ctaReveal 1.4s cubic-bezier(0.16, 1, 0.3, 1) 1.9s both;
+}
+
+.page-enter {
+  animation: pageEnter 1.2s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.hero-btn-pop {
+  transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.3s ease !important;
+}
+
+.hero-btn-pop:hover {
+  transform: translateY(-5px) scale(1.04) !important;
+  box-shadow: 0 14px 36px rgba(212, 175, 55, 0.4) !important;
+}
+
+/* Legacy float / glow kept for other sections */
+@keyframes floatGentle {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.animate-float-gentle {
+  animation: floatGentle 5s ease-in-out infinite;
+}
+
+.animate-float-delayed {
+  animation: floatGentle 5s ease-in-out 2.5s infinite;
+}
+
+@keyframes glowPulse {
+
+  0%,
+  100% {
+    filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.6));
+  }
+
+  50% {
+    filter: drop-shadow(0 0 25px rgba(212, 175, 55, 0.5));
+  }
+}
+
+.animate-glow-pulse {
+  animation: glowPulse 4s ease-in-out infinite;
+}
+
+.animate-hero-text {
+  opacity: 0;
+  animation: fadeIn 1s ease 0.3s forwards;
+}
+
+.animation-delay-100 {
+  animation-delay: 100ms;
+}
+
+.animation-delay-300 {
+  animation-delay: 300ms;
+}
+
+.animation-delay-500 {
+  animation-delay: 500ms;
+}
+
+.animation-delay-700 {
+  animation-delay: 700ms;
+}
+
+/* =====================================================
+   PREMIUM UX FEEDBACK ANIMATIONS
+   ===================================================== */
+
+/* Shake — used on form error */
+@keyframes shake {
+
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  15% {
+    transform: translateX(-8px);
+  }
+
+  30% {
+    transform: translateX(7px);
+  }
+
+  45% {
+    transform: translateX(-6px);
+  }
+
+  60% {
+    transform: translateX(5px);
+  }
+
+  75% {
+    transform: translateX(-3px);
+  }
+
+  90% {
+    transform: translateX(2px);
+  }
+}
+
+.animate-shake {
+  animation: shake 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+/* Toast slide in from right */
+@keyframes toastSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(60px) scale(0.94);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+/* Toast slide out to right */
+@keyframes toastSlideOut {
+  from {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+    max-height: 120px;
+  }
+
+  to {
+    opacity: 0;
+    transform: translateX(60px) scale(0.94);
+    max-height: 0;
+    margin-bottom: 0;
+  }
+}
+
+.toast-enter {
+  animation: toastSlideIn 0.38s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.toast-exit {
+  animation: toastSlideOut 0.32s cubic-bezier(0.55, 0, 1, 0.45) forwards;
+}
+
+/* Toast progress bar countdown */
+@keyframes toastProgress {
+  from {
+    width: 100%;
+  }
+
+  to {
+    width: 0%;
+  }
+}
+
+/* Input focus ring pulse */
+@keyframes focusRing {
+  0% {
+    box-shadow: 0 0 0 0px rgba(212, 175, 55, 0.5);
+  }
+
+  70% {
+    box-shadow: 0 0 0 6px rgba(212, 175, 55, 0);
+  }
+
+  100% {
+    box-shadow: 0 0 0 0px rgba(212, 175, 55, 0);
+  }
+}
+
+.input-focus-ring:focus {
+  animation: focusRing 0.6s ease;
+}
+
+/* Error border pulse */
+@keyframes errorPulse {
+
+  0%,
+  100% {
+    border-color: rgba(239, 68, 68, 0.6);
+  }
+
+  50% {
+    border-color: rgba(239, 68, 68, 1);
+  }
+}
+
+.input-error {
+  animation: errorPulse 0.8s ease 2;
+}
+
+/* Success checkmark draw */
+@keyframes checkDraw {
+  from {
+    stroke-dashoffset: 50;
+    opacity: 0;
+  }
+
+  to {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+}
+
+.check-draw {
+  animation: checkDraw 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+}
+
+/* Bounce in for success modal */
+@keyframes bounceIn {
+  0% {
+    transform: scale(0.3);
+    opacity: 0;
+  }
+
+  50% {
+    transform: scale(1.08);
+    opacity: 1;
+  }
+
+  70% {
+    transform: scale(0.95);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+.animate-bounce-in {
+  animation: bounceIn 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}

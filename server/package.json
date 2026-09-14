@@ -1,0 +1,13 @@
+{
+  "name": "tsedeke-grand-hotel-backend",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "npm --prefix src run dev",
+    "start": "npm --prefix src start",
+    "install": "npm --prefix src install"
+  },
+  "dependencies": {
+    "imap-simple": "^5.1.0",
+    "mailparser": "^3.9.14"
+  }
+}

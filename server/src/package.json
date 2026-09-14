@@ -1,0 +1,46 @@
+{
+    "name": "tsedeke-grand-hotel-backend",
+    "version": "1.0.0",
+    "description": "Tsedeke Grand Hotel REST API — Node.js / Express / MongoDB",
+    "main": "server.js",
+    "type": "module",
+    "scripts": {
+        "start": "node server.js",
+        "dev": "nodemon --config nodemon.json server.js",
+        "seed": "node utils/seed_admin.js",
+        "chat": "node utils/aiCli.js"
+    },
+    "dependencies": {
+        "bcryptjs": "^2.4.3",
+        "cloudinary": "^2.5.1",
+        "compression": "^1.7.4",
+        "cookie-parser": "^1.4.6",
+        "cors": "^2.8.6",
+        "dotenv": "^16.6.1",
+        "express": "^4.22.2",
+        "express-async-errors": "^3.1.1",
+        "express-mongo-sanitize": "^2.2.0",
+        "express-rate-limit": "^7.4.0",
+        "express-validator": "^7.2.0",
+        "helmet": "^7.2.0",
+        "hpp": "^0.2.3",
+        "jsonwebtoken": "^9.0.3",
+        "mongoose": "^8.24.0",
+        "morgan": "^1.11.0",
+        "multer": "^1.4.5-lts.1",
+        "multer-storage-cloudinary": "^4.0.0",
+        "nodemailer": "^6.9.14",
+        "openai": "^7.8.0",
+        "sharp": "^0.33.4",
+        "slugify": "^1.6.6",
+        "twilio": "^6.0.2",
+        "winston": "^3.13.0",
+        "xss-clean": "^0.1.4"
+    },
+    "devDependencies": {
+        "nodemon": "^3.1.4"
+    },
+    "engines": {
+        "node": ">=18.0.0"
+    }
+}
