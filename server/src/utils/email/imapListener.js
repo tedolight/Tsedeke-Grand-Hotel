@@ -84,7 +84,8 @@ const startImapListener = async () => {
               // Update the contact status to new so it shows up as unread in dashboard
               contact.status = 'new';
               contact.folder = 'inbox';
-              if (!contact.tags.includes('unread')) {
+              if (!(contact.tags || []).includes('unread')) {
+                contact.tags = contact.tags || [];
                 contact.tags.push('unread');
               }
               await contact.save();

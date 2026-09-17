@@ -67,17 +67,23 @@ export const getRooms = asyncHandler(async (req, res, next) => {
   );
 
   const allDbRooms = await Room.find();
+  const bulkOps = [];
   for (const roomItem of allDbRooms) {
     if (roomItem.status === 'Maintenance' || roomItem.status === 'Cleaning' || roomItem.status === 'Reserved') continue;
     const isOccupied = occupiedRoomIds.has(roomItem._id.toString());
     const targetStatus = isOccupied ? 'Occupied' : 'Available';
 
     if (roomItem.status !== targetStatus || roomItem.isAvailable !== !isOccupied) {
-      await Room.updateOne(
-        { _id: roomItem._id },
-        { status: targetStatus, isAvailable: !isOccupied }
-      );
+      bulkOps.push({
+        updateOne: {
+          filter: { _id: roomItem._id },
+          update: { $set: { status: targetStatus, isAvailable: !isOccupied } }
+        }
+      });
     }
+  }
+  if (bulkOps.length > 0) {
+    await Room.bulkWrite(bulkOps);
   }
 
   let query;

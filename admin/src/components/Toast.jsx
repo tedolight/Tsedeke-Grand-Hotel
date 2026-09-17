@@ -1,5 +1,9 @@
-import { useEffect } from 'react'
-import { useStore } from '../store/useStore'
+import { useEffect, useState } from 'react'
+
+// Global toast event bus — components fire window.dispatchEvent(new CustomEvent('admin-toast', { detail: { message, type } }))
+export function showAdminToast(message, type = 'success') {
+  window.dispatchEvent(new CustomEvent('admin-toast', { detail: { message, type } }));
+}
 
 const icons = {
   success: (
@@ -26,7 +30,18 @@ const styles = {
 }
 
 export default function Toast() {
-  const { toast, hideToast } = useStore()
+  const [toast, setToast] = useState(null)
+
+  useEffect(() => {
+    let timer
+    const handler = (e) => {
+      clearTimeout(timer)
+      setToast({ id: Date.now(), ...e.detail })
+      timer = setTimeout(() => setToast(null), 3200)
+    }
+    window.addEventListener('admin-toast', handler)
+    return () => { window.removeEventListener('admin-toast', handler); clearTimeout(timer) }
+  }, [])
 
   if (!toast) return null
 
@@ -39,7 +54,7 @@ export default function Toast() {
         <span className="flex-none">{icons[toast.type] ?? icons.success}</span>
         <span className="flex-1">{toast.message}</span>
         <button
-          onClick={hideToast}
+          onClick={() => setToast(null)}
           className="flex-none opacity-60 hover:opacity-100 transition-opacity text-[1.2rem] leading-none ml-1"
           aria-label="Dismiss"
         >

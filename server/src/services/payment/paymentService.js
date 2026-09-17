@@ -73,7 +73,7 @@ export const initializeChapaPayment = async (booking, amount, txRef) => {
     last_name: lastName,
     phone_number: sanitizedPhone,
     tx_ref: txRef,
-    callback_url: `${process.env.BACKEND_URL || 'http://localhost:5000'}/api/payments/chapa-webhook`,
+    callback_url: `${process.env.BACKEND_URL || 'http://localhost:7000'}/api/payments/chapa-webhook`,
     return_url: `${process.env.CLIENT_URL || 'http://localhost:3000'}/booking?chapa_verify=true&bookingId=${booking._id}&tx_ref=${txRef}`,
     customization: {
       title: 'Tsedeke Grand',       // Chapa: max 16 chars

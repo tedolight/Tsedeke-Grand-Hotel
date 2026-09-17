@@ -193,14 +193,14 @@ const Dashboard = () => {
             
             {/* CSS Conic-Gradient Donut */}
             <div 
-              className="w-[124px] h-[124px] rounded-full flex items-center justify-center relative shrink-0"
+              className="donut-3d-ring w-[124px] h-[124px] rounded-full flex items-center justify-center relative shrink-0"
               style={{
                 background: `conic-gradient(var(--color-gold) 0% ${occupancy?.occupied || 0}%, var(--color-gold-dark) ${occupancy?.occupied || 0}% ${(occupancy?.occupied || 0) + (occupancy?.maintenance || 0)}%, var(--color-dark-5) ${(occupancy?.occupied || 0) + (occupancy?.maintenance || 0)}% 100%)`
               }}
             >
-              <div className="absolute inset-[18px] bg-dark-3 rounded-full flex flex-col items-center justify-center">
-                <span className="font-cinzel text-2xl text-gold font-semibold leading-none mb-0.5">{occupancy?.occupied || 0}%</span>
-                <span className="text-[8px] text-text-muted uppercase tracking-[1px]">Occupied</span>
+              <div className="donut-3d-hole absolute inset-[18px] rounded-full flex flex-col items-center justify-center">
+                <span className="font-cinzel text-2xl text-gold font-semibold leading-none mb-0.5" style={{ textShadow: '1px 1px 0 #a07c28, 2px 2px 0 #6e5418, 3px 3px 0 #2a1f08' }}>{occupancy?.occupied || 0}%</span>
+                <span className="text-[8px] text-text-muted uppercase tracking-[1.5px] font-semibold" style={{ textShadow: '0 1px 0 #000' }}>Occupied</span>
               </div>
             </div>
 

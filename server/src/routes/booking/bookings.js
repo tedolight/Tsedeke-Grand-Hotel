@@ -11,13 +11,15 @@ import {
 } from '../../controllers/booking/bookingController.js';
 import { protect, optionalProtect } from '../../middleware/auth/auth.js';
 import { isAdmin } from '../../middleware/auth/isAdmin.js';
+import { createBookingValidation } from '../../middleware/validation/bookingValidation.js';
+import { validate } from '../../middleware/validation/validate.js';
 
 const router = express.Router();
 
 // Public routes
 router.post('/availability/:roomId', checkRoomAvailability);
 // Optional Auth: logged in users attach their ID, guests can still book
-router.post('/', optionalProtect, createBooking);
+router.post('/', optionalProtect, createBookingValidation, validate, createBooking);
 
 // Protected user routes
 router.get('/my-bookings', protect, getMyBookings);

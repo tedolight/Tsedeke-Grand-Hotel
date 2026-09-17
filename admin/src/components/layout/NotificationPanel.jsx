@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import dashboardService from '../../services/dashboard/dashboardService.js';
-import { getMessages } from '../../services/messagesService.js';
+import messagesService from '../../services/messages/messagesService.js';
 
 const timeAgo = (dateStr) => {
   if (!dateStr) return 'just now';
@@ -30,7 +30,7 @@ const NotificationPanel = () => {
     try {
       const [statsRes, messagesRes] = await Promise.allSettled([
         dashboardService.getStats(),
-        getMessages(),
+        messagesService.getMessages(),
       ]);
 
       const items = [];
@@ -154,19 +154,15 @@ const NotificationPanel = () => {
         onClick={() => setOpen(o => !o)}
         aria-label="Notifications"
         aria-expanded={open}
-        className={`w-[42px] h-[42px] rounded-md flex items-center justify-center
-          cursor-pointer transition-all duration-200 relative border-2
-          ${open
-            ? 'bg-gold/20 border-gold shadow-[0_0_18px_rgba(201,168,76,0.45)]'
-            : 'bg-gold/10 border-gold hover:bg-gold/20 hover:shadow-[0_0_16px_rgba(201,168,76,0.35)]'
-          }`}
-        style={{ boxShadow: unreadCount > 0 ? '0 0 14px rgba(201,168,76,0.35)' : undefined }}
+        className={`btn-3d-bell w-[42px] h-[42px] rounded-md flex items-center justify-center cursor-pointer relative ${
+          open ? 'is-open' : ''
+        }`}
       >
-        {/* Bell icon — always bold gold */}
+        {/* Bell icon — 3D gold extrusion */}
         <i
           className="fas fa-bell text-[18px] text-gold"
           style={{
-            filter: 'drop-shadow(0 0 4px rgba(201,168,76,0.7))',
+            filter: 'drop-shadow(1px 1px 0 #a07c28) drop-shadow(2px 2px 0 #5c4312) drop-shadow(3px 3px 0 #181103)',
             fontWeight: 900,
           }}
         />
@@ -177,9 +173,8 @@ const NotificationPanel = () => {
             className="absolute -top-2 -right-2 min-w-[20px] h-[20px] bg-gold
               text-black text-[10px] font-extrabold rounded-full
               border-2 border-dark-2
-              flex items-center justify-center px-[3px] leading-none
-              animate-pulse"
-            style={{ boxShadow: '0 0 10px rgba(201,168,76,0.8)' }}
+              flex items-center justify-center px-[3px] leading-none"
+            style={{ boxShadow: '1px 1px 0 #8a6a1e, 2px 2px 0 #1a1400' }}
           >
             {unreadCount > 9 ? '9+' : unreadCount}
           </span>

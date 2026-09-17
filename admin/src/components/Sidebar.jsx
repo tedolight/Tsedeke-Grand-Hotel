@@ -1,6 +1,36 @@
 import { useState, useEffect } from 'react'
-import { navItems } from '../data/mockData'
 import { NavIcon, IconLogout, IconX } from './Icons'
+import useAuthStore from '../store/auth/authStore.js'
+
+// Navigation items matching the live admin router
+const navItems = [
+  {
+    group: 'Overview',
+    links: [
+      { id: '',            label: 'Dashboard',     icon: 'grid',     badge: null },
+    ],
+  },
+  {
+    group: 'Manage',
+    links: [
+      { id: 'bookings',    label: 'Bookings',      icon: 'calendar', badge: null },
+      { id: 'rooms',       label: 'Rooms',         icon: 'home',     badge: null },
+      { id: 'events',      label: 'Events',        icon: 'star',     badge: null },
+      { id: 'gallery',     label: 'Gallery',       icon: 'image',    badge: null },
+      { id: 'restaurant',  label: 'Restaurant',    icon: 'menu',     badge: null },
+      { id: 'amenities',   label: 'Amenities',     icon: 'check',    badge: null },
+      { id: 'messages',    label: 'Messages',      icon: 'mail',     badge: null },
+      { id: 'testimonials',label: 'Testimonials',  icon: 'chat',     badge: null },
+      { id: 'users',       label: 'Users',         icon: 'users',    badge: null },
+    ],
+  },
+  {
+    group: 'System',
+    links: [
+      { id: 'settings',    label: 'Settings',      icon: 'settings', badge: null },
+    ],
+  },
+]
 
 export default function Sidebar({ activeId, onNavigate, isOpen, onClose }) {
   // Close sidebar on Escape key

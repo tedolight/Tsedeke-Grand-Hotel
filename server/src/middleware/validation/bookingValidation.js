@@ -31,8 +31,7 @@ export const createBookingValidation = [
     .isLength({ min: 2 })
     .withMessage('Full name must be at least 2 characters'),
   body('email')
-    .notEmpty()
-    .withMessage('Email is required')
+    .optional({ checkFalsy: true })
     .isEmail()
     .withMessage('Please provide a valid email'),
   body('phone')
@@ -43,8 +42,8 @@ export const createBookingValidation = [
 export const updateBookingStatusValidation = [
   body('status')
     .optional()
-    .isIn(['pending', 'confirmed', 'cancelled'])
-    .withMessage('Status must be pending, confirmed, or cancelled'),
+    .isIn(['pending', 'confirmed', 'checked-in', 'checked-out', 'cancelled'])
+    .withMessage('Status must be pending, confirmed, checked-in, checked-out, or cancelled'),
   body('paymentStatus')
     .optional()
     .isIn(['pending', 'paid', 'failed'])

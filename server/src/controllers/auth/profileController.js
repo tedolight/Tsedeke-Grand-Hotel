@@ -167,11 +167,15 @@ export const createUser = asyncHandler(async (req, res, next) => {
   const dbRole = role === 'superadmin' || role === 'admin' ? 'admin' : 'user';
   const fullName = name || (first && last ? `${first} ${last}` : 'New User');
 
+  if (!password) {
+    return next(new ErrorResponse('Please provide a password for the new user', 400));
+  }
+
   const user = await User.create({
     name: fullName,
     email,
     role: dbRole,
-    password: password || '123456',
+    password,
   });
 
   await UserProfile.create({

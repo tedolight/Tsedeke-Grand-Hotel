@@ -57,6 +57,14 @@
       6px 6px 0 #0d0a02;
   }
 
+  /* Compact topbar title: crisp, no letter crowding */
+  header h2,
+  .topbar h2 {
+    text-shadow:
+      1px 1px 0 #a07c28,
+      2px 2px 0 #4e3b10 !important;
+  }
+
   /* h3 stays crisp — single subtle step only (used in sidebar at 9px) */
   h3 {
     text-shadow:
@@ -128,6 +136,69 @@ button.bg-gold:disabled,
   transform: none !important;
   box-shadow: 1px 1px 0 0 #47340b, 2px 2px 0 0 #181103 !important;
   cursor: not-allowed !important;
+}
+
+/* ── 3D Bell Button (zero blur, tactile physical depth) ── */
+.btn-3d-bell {
+  position: relative;
+  border: 2px solid #C9A84C !important;
+  background: linear-gradient(135deg, #2c2315 0%, #1a150c 100%) !important;
+  box-shadow:
+    inset 1px 1px 0 0 rgba(255, 255, 255, 0.4),
+    inset -1px -1px 0 0 rgba(0, 0, 0, 0.4),
+    1px 1px 0 0 #9f7b27,
+    2px 2px 0 0 #85651c,
+    3px 3px 0 0 #694e13,
+    4px 4px 0 0 #47340b,
+    5px 5px 0 0 #181103 !important;
+  transform: translate(-2px, -2px);
+  transition: transform 0.1s ease, box-shadow 0.1s ease, filter 0.15s ease;
+}
+
+.btn-3d-bell:hover {
+  filter: brightness(1.15);
+  transform: translate(-3px, -3px);
+  box-shadow:
+    inset 1px 1px 0 0 rgba(255, 255, 255, 0.55),
+    inset -1px -1px 0 0 rgba(0, 0, 0, 0.4),
+    1px 1px 0 0 #a9842c,
+    2px 2px 0 0 #927020,
+    3px 3px 0 0 #785a18,
+    4px 4px 0 0 #574010,
+    5px 5px 0 0 #382808,
+    6px 6px 0 0 #181103 !important;
+}
+
+.btn-3d-bell:active,
+.btn-3d-bell.is-open {
+  transform: translate(2px, 2px) !important;
+  box-shadow:
+    inset 1px 1px 0 0 rgba(255, 255, 255, 0.2),
+    inset -1px -1px 0 0 rgba(0, 0, 0, 0.5),
+    1px 1px 0 0 #694e13,
+    2px 2px 0 0 #181103 !important;
+}
+
+/* ── 3D Donut Chart Ring (hard physical bevel & extrusion) ── */
+.donut-3d-ring {
+  box-shadow:
+    inset 1px 1px 0 0 rgba(255, 255, 255, 0.45),
+    inset -1px -1px 0 0 rgba(0, 0, 0, 0.35),
+    1px 1px 0 0 #9f7b27,
+    2px 2px 0 0 #85651c,
+    3px 3px 0 0 #694e13,
+    4px 4px 0 0 #47340b,
+    5px 5px 0 0 #181103;
+  transform: translate(-2px, -2px);
+}
+
+.donut-3d-hole {
+  box-shadow:
+    inset 2px 2px 0 0 #0d0a02,
+    inset 3px 3px 0 0 #1a1408,
+    0 -1px 0 0 rgba(255, 255, 255, 0.18),
+    0 0 0 1px #4e3b10;
+  background: radial-gradient(circle at 45% 45%, #251f16 0%, #15110a 100%) !important;
 }
 
 /* Room type gradients and icons from prototype */
@@ -228,14 +299,11 @@ button.bg-gold:disabled,
   font-weight: 600;
 }
 
-/* KPI card values & section headings */
+/* KPI card values in light theme (keep razor-sharp dark contrast) */
 [data-theme="light"] .font-cinzel.text-white,
 [data-theme="light"] .font-cinzel.text-3xl,
 [data-theme="light"] .font-cinzel.text-2xl,
-[data-theme="light"] .font-cinzel.text-xs,
-[data-theme="light"] h1.font-cinzel,
-[data-theme="light"] h2.font-cinzel,
-[data-theme="light"] h3.font-cinzel {
+[data-theme="light"] .font-cinzel.text-xs {
   color: #1A1814 !important;
   font-weight: 700;
 }
@@ -342,11 +410,65 @@ button.bg-gold:disabled,
   font-weight: 700;
 }
 
-/* Ensure page-heading in light mode is dark and bold */
+/* ──────────────────────────────────────────────────────────────────────────
+   LIGHT THEME 3D HEADINGS (Astonishing Royal Gilded Bronze / 24K Gold)
+   Sculpted metallic gold extrusion with specular white relief catch.
+   Zero blur, razor-sharp contrast on light backgrounds.
+   ────────────────────────────────────────────────────────────────────────── */
+
+/* Main Page Titles (h1) */
+[data-theme="light"] h1,
+[data-theme="light"] h1.font-cinzel,
 [data-theme="light"] .page-heading {
-  color: #1A1814 !important;
-  font-weight: 800;
+  color: #684C0F !important;
+  text-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.95),      /* crisp white lower light catch */
+    1px 1px 0 #DECA8E,                       /* bright champagne gold bevel */
+    2px 2px 0 #C5A449,                       /* radiant rich gold */
+    3px 3px 0 #9E7C2B,                       /* deep metallic bronze-gold */
+    4px 4px 0 #63470F !important;            /* anchored shadow edge */
+  letter-spacing: 1.5px;
+  font-weight: 700;
 }
+
+/* Section & Modal Headings (h2) */
+[data-theme="light"] h2,
+[data-theme="light"] h2.font-cinzel {
+  color: #684C0F !important;
+  text-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.9),
+    1px 1px 0 #DECA8E,
+    2px 2px 0 #B8963D,
+    3px 3px 0 #7A5B18 !important;
+  font-weight: 700;
+}
+
+/* Topbar Header Title: crystal-clear, refined 1-step gold relief */
+[data-theme="light"] header h2,
+[data-theme="light"] .topbar h2,
+[data-theme="light"] header .font-cinzel {
+  color: #1A1814 !important;
+  text-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.95),
+    1px 1px 0 rgba(201, 168, 76, 0.5) !important;
+  font-weight: 700;
+}
+
+/* Subheadings & Card Titles (h3) in light theme */
+[data-theme="light"] h3,
+[data-theme="light"] h3.font-cinzel {
+  color: #212529 !important;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.85) !important;
+  font-weight: 700;
+}
+
+/* Sidebar Section Headers (CORE, OPERATIONS, etc.) — clean & crisp */
+[data-theme="light"] aside h3 {
+  color: #6C5420 !important;
+  text-shadow: none !important;
+  font-weight: 700 !important;
+}
+
 [data-theme="light"] .page-sub {
   color: #495057 !important;
   font-weight: 600;

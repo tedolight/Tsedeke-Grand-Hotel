@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import axios from 'axios';
+import api from '../../services/api/api.js';
 
 const useAuthStore = create((set) => ({
   user: null,
@@ -11,17 +11,19 @@ const useAuthStore = create((set) => ({
   login: async (email, password) => {
     set({ loading: true, error: null });
     try {
-      const res = await axios.post('/api/auth/login', { email, password });
-      
-      const { token, data } = res.data;
-      
-      if (data.role !== 'admin') {
+      const res = await api.post('/auth/login', { email, password });
+
+      // res is response.data (raw) since admin api.js does not transform (res) => res.data
+      const token = res.data?.token || res.token;
+      const user = res.data?.data || res.data;
+
+      if (!user || user.role !== 'admin') {
         throw new Error('Not authorized as an admin');
       }
 
       localStorage.setItem('admin_token', token);
       set({
-        user: data,
+        user,
         token,
         isAuthenticated: true,
         loading: false,
@@ -48,17 +50,13 @@ const useAuthStore = create((set) => ({
   loadUser: async () => {
     const token = localStorage.getItem('admin_token');
     if (!token) return;
-    
+
     set({ loading: true });
     try {
-      const res = await axios.get('/api/auth/me', {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      });
-      
-      const user = res.data.data || res.data;
-      if (user.role !== 'admin') {
+      const res = await api.get('/auth/me');
+      // admin api interceptor returns res (full response), so data is res.data
+      const user = res.data?.data || res.data || res;
+      if (!user || user.role !== 'admin') {
         localStorage.removeItem('admin_token');
         set({ user: null, token: null, isAuthenticated: false, loading: false });
         return;
